@@ -7,14 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/hello")
 public class HelloWorldController {
 
-    @Value("${message}")
-    private String message;
-
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<String> getMessage() {
-        return ResponseEntity.ok(message);
+        return ResponseEntity.ok("Pod Is Up");
+    }
+
+    @GetMapping("/version")
+    public ResponseEntity<String> getMessageWithVersion() {
+        return ResponseEntity.ok("Ver 1");
     }
 }
