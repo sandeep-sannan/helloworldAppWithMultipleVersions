@@ -16,6 +16,6 @@ public class HelloWorldController {
 
     @GetMapping("/version")
     public ResponseEntity<String> getMessageWithVersion() {
-        return ResponseEntity.ok("Ver 1");
+        return ResponseEntity.ok("Ver 2");
     }
 }
