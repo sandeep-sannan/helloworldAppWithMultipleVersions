@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-gke
+  labels:
+    app: spring-boot
+    service: spring-boot
+spec:
+  ports:
+  - port: 80
+    targetPort:8080
+    name: http
+  selector:
+    app: spring-boot
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: springboot-helloworld 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-gke-v1
+  labels:
+    app: spring-boot
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: spring-boot
+        version: v1
+    spec:
+      serviceAccountName: springboot-helloworld
+      containers:
+      - name: spring-boot
+        image:  gcr.io/anthos-poc-252613/spring-boot-gke-v1:l
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-gke-v2
+  labels:
+    app: spring-boot
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: spring-boot
+        version: v2
+    spec:
+      serviceAccountName: springboot-helloworld
+      containers:
+      - name: spring-boot
+        image:  gcr.io/anthos-poc-252613/spring-boot-gke-v2:2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-gke-v3
+  labels:
+    app: spring-boot
+    version: v3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot
+      version: v3
+  template:
+    metadata:
+      labels:
+        app: spring-boot
+        version: v3
+    spec:
+      serviceAccountName: springboot-helloworld
+      containers:
+      - name: spring-boot
+        image:  gcr.io/anthos-poc-252613/spring-boot-gke-v3:3
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+
+
