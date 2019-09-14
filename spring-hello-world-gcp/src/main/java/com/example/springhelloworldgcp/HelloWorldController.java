@@ -9,13 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldController {
 
-    @GetMapping("/")
-    public ResponseEntity<String> getMessage() {
-        return ResponseEntity.ok("Pod Is Up");
-    }
-
-    @GetMapping("/version")
-    public ResponseEntity<String> getMessageWithVersion() {
-        return ResponseEntity.ok("Ver 1");
+    @RequestMapping("/hello")
+    public String hello() {
+        return String.format("This is hello from version 1");
     }
 }
