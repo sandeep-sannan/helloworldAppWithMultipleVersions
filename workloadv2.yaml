@@ -28,10 +28,12 @@ spec:
     spec:
       containers:
       - name: kube-canary-app
-        image: gcr.io/anthos-poc-252613/istiocanary:1.0
+        image: amexpoc.azurecr.io/amex-anthos/master:1
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: amexpoc
 ---
 ##################################################################################################
 # Hello message services being called by main service
@@ -64,10 +66,12 @@ spec:
     spec:
       containers:
       - name: hello-message-app
-        image: gcr.io/anthos-poc-252613/kubecanary:1.0
+        image: amexpoc.azurecr.io/amex-anthos/v3:1
         imagePullPolicy: Always
         ports:
         - containerPort: 8888
+      imagePullSecrets:
+      - name: amexpoc
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -83,8 +87,10 @@ spec:
     spec:
       containers:
       - name: hello-message-app
-        image: gcr.io/anthos-poc-252613/kubecanary:2.0
+        image: amexpoc.azurecr.io/amex-anthos/v4:1
         imagePullPolicy: Always
         ports:
         - containerPort: 8888
+      imagePullSecrets:
+      - name: amexpoc
 ---
