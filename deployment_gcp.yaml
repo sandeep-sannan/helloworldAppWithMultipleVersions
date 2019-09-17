@@ -1,0 +1,90 @@
+##################################################################################################
+# Main  service receiving response from ingress 
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: gcp-master-app
+  labels:
+    app: gcp-master-app
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: gcp-master-app
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gcp-master-app-deployment-v1
+spec:
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: gcp-master-app
+        version: v1
+    spec:
+      containers:
+      - name: gcp-master-app
+        image: gcr.io/anthos-poc-252613/gcp-master-app:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+---
+##################################################################################################
+# Hello message services being called by main service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: gcp-hello-message-app
+  labels:
+    app: gcp-hello-message-app
+spec:
+  ports:
+  - port: 8888
+    name: http
+  selector:
+    app: gcp-hello-message-app
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gcp-hello-message-app-deployment-v1
+spec:
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: gcp-hello-message-app
+        version: v1
+    spec:
+      containers:
+      - name: gcp-hello-message-app
+        image: gcr.io/anthos-poc-252613/hello-message-app:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8888
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gcp-hello-message-app-deployment-v2
+spec:
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: gcp-hello-message-app
+        version: v2
+    spec:
+      containers:
+      - name: gcp-hello-message-app
+        image: gcr.io/anthos-poc-252613/hello-message-app:2.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8888
+---
