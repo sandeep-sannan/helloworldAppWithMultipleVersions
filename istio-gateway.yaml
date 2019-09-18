@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: istio-canary-gateway
+  name: istio-master-gateway
 spec:
   selector:
     istio: ingressgateway # use istio default controller
@@ -16,16 +16,16 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: kube-canary-app
+  name: azure-master-app
 spec:
   hosts:
   - "*"
   gateways:
-  - istio-canary-gateway
+  - istio-master-gateway
   http:
   - route:
     - destination:
-        host: kube-canary-app
+        host: azure-master-app
         port:
           number: 8080
 ---
