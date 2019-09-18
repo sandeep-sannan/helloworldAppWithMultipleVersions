@@ -19,7 +19,7 @@ public class HelloWorldController {
         public String welcome() {
             String message ="";
             try {
-                message = restTemplate.getForObject("http://gcp-hello-message-app:8888/hello", String.class);
+                message = restTemplate.getForObject("http://hello-message-app:8888/hello", String.class);
             }catch(Exception e){
                 System.out.println("Exception " + e.getMessage());
             }
