@@ -22,6 +22,7 @@ public class HelloWorldController {
 
     @RequestMapping("/hello")
     public String welcome() {
+        System.out.println("Hello End Point Called...Version1");
         String message ="This is hello from version 1 + [ ";
         String azMsg="";
         try {
