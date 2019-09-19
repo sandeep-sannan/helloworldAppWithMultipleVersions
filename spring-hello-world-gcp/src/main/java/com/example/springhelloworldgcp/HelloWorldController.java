@@ -29,7 +29,7 @@ public class HelloWorldController {
             azMsg = restTemplate.getForObject("http://10.0.6.179:8080/welcome", String.class);
         }catch(Exception e){
             System.out.println("Exception " + e.getMessage());
-            azMsg = "failed to call azure pods";
+            azMsg = e.getMessage();
         }
         message= message+azMsg +" ]";
         return message;
