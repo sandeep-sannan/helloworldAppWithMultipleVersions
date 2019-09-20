@@ -20,7 +20,7 @@ public class HelloWorldController {
             System.out.println("Welcome End Point Called...GCP Master");
             String message ="";
             try {
-                message = restTemplate.getForObject("http://gcp-hello-message-app:8888/hello", String.class);
+                message = restTemplate.getForObject("http://hello-message-app:8888/hello", String.class);
             }catch(Exception e){
                 System.out.println("Exception " + e.getMessage());
             }
