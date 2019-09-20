@@ -26,7 +26,7 @@ public class HelloWorldController {
         String message ="This is hello from version 1 + [ ";
         String azMsg="";
         try {
-            azMsg = restTemplate.getForObject("http://172.21.3.164:8080/welcome", String.class);
+            azMsg = restTemplate.getForObject("http://172.21.3.160:8080/welcome", String.class);
         }catch(Exception e){
             System.out.println("Exception " + e.getMessage());
             azMsg = e.getMessage();
