@@ -39,31 +39,31 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: gcp-hello-message-app
+  name: hello-message-app
   labels:
-    app: gcp-hello-message-app
+    app: hello-message-app
 spec:
   ports:
   - port: 8888
     name: http
   selector:
-    app: gcp-hello-message-app
+    app: hello-message-app
   type: ClusterIP
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: gcp-hello-message-app-deployment-v1
+  name: hello-message-app-deployment-v1
 spec:
   replicas: 1
   template: # template for the pods
     metadata:
       labels:
-        app: gcp-hello-message-app
+        app: hello-message-app
         version: v1
     spec:
       containers:
-      - name: gcp-hello-message-app
+      - name: hello-message-app
         image: gcr.io/anthos-poc-252613/hello-message-app:1.0
         imagePullPolicy: Always
         ports:
@@ -72,17 +72,17 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: gcp-hello-message-app-deployment-v2
+  name: hello-message-app-deployment-v2
 spec:
   replicas: 1
   template: # template for the pods
     metadata:
       labels:
-        app: gcp-hello-message-app
+        app: hello-message-app
         version: v2
     spec:
       containers:
-      - name: gcp-hello-message-app
+      - name: hello-message-app
         image: gcr.io/anthos-poc-252613/hello-message-app:2.0
         imagePullPolicy: Always
         ports:
