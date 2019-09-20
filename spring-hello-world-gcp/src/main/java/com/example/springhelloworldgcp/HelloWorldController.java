@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class HelloWorldController {
 
-    @RequestMapping("/hello-old")
+    @RequestMapping("/hello")
     public String hello() {
         return String.format("This is hello from version 2");
     }
@@ -20,7 +20,7 @@ public class HelloWorldController {
     @Autowired
     RestTemplate restTemplate;
 
-    @RequestMapping("/hello")
+    @RequestMapping("/hello-new")
     public String welcome() {
         System.out.println("Hello End Point Called...Version2");
         String message ="This is hello from version 2 + [ ";
