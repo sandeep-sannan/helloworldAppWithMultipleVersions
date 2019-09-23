@@ -32,7 +32,7 @@ public class HelloWorldController {
         System.out.println("Welcome-azure End Point Called...GCP Master");
         String message ="";
         try {
-            message = restTemplate.getForObject("http://azure-hello-message-app:8889/hello", String.class);
+            message = restTemplate.getForObject("http://azure-hello-message-app:8888/hello", String.class);
         }catch(Exception e){
             System.out.println("Azure-Exception " + e.getMessage());
         }
