@@ -27,6 +27,18 @@ public class HelloWorldController {
             return message;
         }
 
+    @RequestMapping("/welcome-azure")
+    public String callAzureService() {
+        System.out.println("Welcome-azure End Point Called...GCP Master");
+        String message ="";
+        try {
+            message = restTemplate.getForObject("http://azure-hello-message-app:8889/hello", String.class);
+        }catch(Exception e){
+            System.out.println("Azure-Exception " + e.getMessage());
+        }
+        return message;
+    }
+
         @Bean
         public RestTemplate rest() {
             return new RestTemplate();
