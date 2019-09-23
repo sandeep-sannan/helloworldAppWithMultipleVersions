@@ -11,6 +11,6 @@ public class HelloWorldController {
 
     @RequestMapping("/hello")
     public String hello() {
-        return String.format("This is hello from version 4");
+        return String.format("This is hello from Azure - version 5");
     }
 }
