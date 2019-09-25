@@ -26,6 +26,17 @@ public class HelloWorldController {
             return message;
         }
 
+        @RequestMapping("/welcome-gcp")
+        public String welcomeGcp() {
+            String message ="";
+            try {
+                message = restTemplate.getForObject("http://gcp-hello-message-app:8888/hello", String.class);
+            }catch(Exception e){
+                System.out.println("Exception " + e.getMessage());
+            }
+            return message;
+        }
+
         @Bean
         public RestTemplate rest() {
             return new RestTemplate();
